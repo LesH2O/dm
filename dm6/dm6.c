@@ -53,13 +53,29 @@ int main51(){
 	else{return(1);}
 }
 
+
+int abso(int a){
+	if(a<0){return -a;} 
+	else{return a;}
+}
+
+int minecart(int* tab, int taille){
+	if(taille == 0){exit(1);}
+	int mini = abso(tab[0]);
+	for(int i = 1 ; i<taille ; i+=1)
+	{
+		int r = abso(abso(tab[i])-i) ;
+		if(mini>r){mini = r;}
+	}
+	return mini ;
+}
 int main52(){
-	
-
-
+	int tab[3] = {1,1,3};
+	if(minecart(tab,3)==0){ return 1 ;}
+	else{return 0 ;}
 }
 
 void main(){
-	int r = main51() ;
+	int r = main52() ;
 	exit(r) ;
 }

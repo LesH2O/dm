@@ -49,3 +49,20 @@ let minecart t =
            else mini := !mini);
   done;
   !mini;;
+
+
+
+
+let premiercommepremier t =
+  let let premiercommepremier t = 
+  let taille = Array.length t in
+  let indice = ref (-1) in 
+  for i = 1 to (taille-1) do
+    indice := if ((t.(i) = t.(0))&&( !indice = -1)) then i
+      else !indice;
+  done;
+  !indice;;
+
+premiercommepremier [| 1; 5; 8; 6; 9; 43; 2|];;
+premiercommepremier [| 1; 5; 8; 6; 9; 43; 2; 1|];;
+premiercommepremier [| 1; 5; 8; 6; 9; 43; 2; 1; 5; 7; 1|];;

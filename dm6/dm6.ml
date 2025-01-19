@@ -66,3 +66,18 @@ let premiercommepremier t =
 premiercommepremier [| 1; 5; 8; 6; 9; 43; 2|];;
 premiercommepremier [| 1; 5; 8; 6; 9; 43; 2; 1|];;
 premiercommepremier [| 1; 5; 8; 6; 9; 43; 2; 1; 5; 7; 1|];;
+
+
+
+let premiercommeavant t =
+  let res = ref (-1, -1) in
+  let taille = Array.length t in
+  for i = 1 to (taille-1) do
+    for j = 0 to (i-1) do
+      res := if ((t.(i)=t.(j))&&( !res = (-1, -1))) then (i, j)
+        else !res;
+    done; done;
+  !res;;
+
+premiercommeavant [|1; 5; 7; 9; 6 ;8; 43; 1; 6; 1|];;
+premiercommeavant [|1; 5; 7; 9; 6 ;8; 43; 11; 62|];;  

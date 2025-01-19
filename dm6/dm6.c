@@ -121,7 +121,37 @@ int main54(){
 	printf("never gonna let you down \n");
 	return 1 ;
 }
+
 void main(){
 	int r = main54() ;
 	exit(r) ;
 }
+
+
+bool equilibre(int* t, int taille){
+	int max = t[0];
+	int min = t[0];
+	for (int i = 0; i<taille; i+=1)
+	{
+		if (t[i]<min) min = t[i];
+		if (t[i]>max) max = t[i];
+	}
+	int* occur = malloc((max-min+1)*sizeof(int));
+	for (int i=0; i<(max-min+1); i+=1){ occur[i]=0; }
+	for (int i=0; i<taille; i+=1){ occur[t[i]-min]+=1; }
+	bool verif = true;
+	for (int i=0; i<(max-min+1); i+=1)
+	{
+		if ((t[0]!=t[i])&&(t[i]!=0)){ verif = false;};
+	}
+	return verif;
+}
+
+int main55(){
+	int tab[2] = {1,3};
+	if(equilibre(tab,2)){ return 1 ;}
+	else{return 0 ;}
+}
+
+
+

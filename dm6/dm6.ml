@@ -37,3 +37,15 @@ q1 [| 1; 2; 4; 5; 6; 7; 8; 9|];;
       
     
       
+
+let minecart t =
+  let taille = Array.length t in
+  let mini = if t.(0)<0 then ref (-t.(0)) else ref (t.(0)) in
+  for i = 1 to (taille-1) do
+    let temp = ref (t.(i)-i) in
+    if !temp <0 then ( if (-(!temp))< !mini then mini:= !temp
+                       else mini := !mini )
+    else ( if !temp < !mini then mini := !temp
+           else mini := !mini);
+  done;
+  !mini;;

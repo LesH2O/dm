@@ -74,8 +74,54 @@ int main52(){
 	if(minecart(tab,3)==0){ return 1 ;}
 	else{return 0 ;}
 }
+int premiercommepremier(int* tab, int taille){
+	if(taille < 1){exit(0);}
+	int premier = tab[0] ;
+	for(int i= 1 ; i < taille ; i +=1){
+		if(tab[i] == premier && i+1<taille){return i+1 ;}
+	}
+	return -1 ;
+}
 
+
+int main53(){
+	int t1[3] = {1,2,3} ;
+	int t2[3] = {1,1,2} ;
+	int t3[3] = {1,2,1} ;
+	int t4[1] = {1}; 
+	if(premiercommepremier(t1, 3)==-1 &&
+premiercommepremier(t2, 3)==2 &&
+premiercommepremier(t3, 3)==-1 &&
+premiercommepremier(t4, 1)==-1){return 0 ;}
+	return 1 ;
+}
+
+int* premiercommeavant(int* tab , int taille){
+	if(taille < 1){exit(0);}
+	int* r = malloc(2*sizeof(int));
+	r[0] = -1 ;
+	r[1] = -1 ;
+	for(int i= 1 ; i < taille ; i +=1){
+		if(tab[i] == tab[i-1]){r[0] = i ; r[1] = i-1 ; return r;}
+	}
+	return r;
+}
+int main54(){
+	int t1[3] = {1,2,3} ;
+	int t2[3] = {1,1,2} ;
+	int t3[3] = {1,2,1} ;
+	int* tt1 = premiercommeavant(t1,3) ;
+	int* tt2 = premiercommeavant(t2,3) ;
+	int* tt3 = premiercommeavant(t3,3) ;
+	if(tt1[0]== -1 && tt1[1] == -1)
+	{ printf("never\n") ; 
+		if(tt2[0]== 1  && tt2[1] == 0)
+	{ printf("gonna\n") ;
+		if(tt3[0]== -1 && tt3[1] == -1){printf("give you up \n"); free(tt1) ; free(tt2);free(tt3); return 0 ;}}}
+	printf("never gonna let you down \n");
+	return 1 ;
+}
 void main(){
-	int r = main52() ;
+	int r = main54() ;
 	exit(r) ;
 }

@@ -122,11 +122,6 @@ int main54(){
 	return 1 ;
 }
 
-void main(){
-	int r = main54() ;
-	exit(r) ;
-}
-
 
 bool equilibre(int* t, int taille){
 	int max = t[0];
@@ -138,20 +133,27 @@ bool equilibre(int* t, int taille){
 	}
 	int* occur = malloc((max-min+1)*sizeof(int));
 	for (int i=0; i<(max-min+1); i+=1){ occur[i]=0; }
-	for (int i=0; i<taille; i+=1){ occur[t[i]-min]+=1; }
+	for (int i=0; i<taille; i+=1){ occur[t[i]-min]+=1;}
 	bool verif = true;
+	int value = occur[0];
 	for (int i=0; i<(max-min+1); i+=1)
 	{
-		if ((t[0]!=t[i])&&(t[i]!=0)){ verif = false;};
+		if ((occur[i]!=value)&&(occur[i]!=0)){ verif = false;};
 	}
+	free(occur);
 	return verif;
 }
 
+
 int main55(){
 	int tab[2] = {1,3};
-	if(equilibre(tab,2)){ return 1 ;}
-	else{return 0 ;}
+	if(equilibre(tab,2)){ return 0 ;}
+	else{return 1 ;}
 }
 
 
+int main(){
+    int r=main55();
+	return r;
+}
 

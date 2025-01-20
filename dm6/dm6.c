@@ -152,8 +152,36 @@ int main55(){
 }
 
 
-int main(){
-    int r=main55();
-	return r;
+
+int premierabsent(int* t, int n)
+{
+    int k = -1;
+    bool present = true;
+    while (present)
+    {
+        k+=1;
+        present = false;
+        for (int i = 0; i<n; i+=1)
+        {
+            if (t[i]==k) {present=true;};
+        }
+    }
+    return k;
+}
+
+int main56(){
+    int tab[5] = {1,2,0,4,5};
+	printf("%d", premierabsent(tab, 5));
+	if (premierabsent(tab,5)==3) {return 0;};
+}
+
+
+
+
+
+
+void main(){
+    int r = main56();
+	exit(r);
 }
 

@@ -121,13 +121,6 @@ int main54(){
 	printf("never gonna let you down \n");
 	return 1 ;
 }
-
-void main(){
-	int r = main54() ;
-	exit(r) ;
-}
-
-
 bool equilibre(int* t, int taille){
 	int max = t[0];
 	int min = t[0];
@@ -152,6 +145,13 @@ int main55(){
 	if(equilibre(tab,2)){ return 1 ;}
 	else{return 0 ;}
 }
+
+void main(){
+	int r = main55() ;
+	exit(r) ;
+}
+
+
 
 
 

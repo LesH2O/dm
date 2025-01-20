@@ -80,4 +80,24 @@ let premiercommeavant t =
   !res;;
 
 premiercommeavant [|1; 5; 7; 9; 6 ;8; 43; 1; 6; 1|];;
-premiercommeavant [|1; 5; 7; 9; 6 ;8; 43; 11; 62|];;  
+premiercommeavant [|1; 5; 7; 9; 6 ;8; 43; 11; 62|];; 
+
+
+let premierabsent t =
+	let n = Array.length t in
+	let d = Hashtabl.create n in
+	for i = 0 to (n-1) do
+		if Hashtbl.mem d i then Hashtbl.replace d i ((Hashtbl.find d i)+1)
+		else Hashtbl.add d i 1
+	done ;
+	let t = Hashtbl.fin_all in 
+	let rec verif l = match l with
+	| [] -> true
+	| [a] -> true
+	| a::b::q -> (a=b)&& verif b::q 
+	in verif t 
+		
+
+
+
+ 

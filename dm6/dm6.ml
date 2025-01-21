@@ -102,17 +102,17 @@ let premierabsent t =
         if taille = 0 then 0 else (if taille = 1 then (if t.(0) = 0 then 1 else 0) else(
         let n = Array.fold_right max t 0 in
         let r = Array.make (n+1) 0 in
-        for i=0 to (Array.length t -2) do (r.(t.(i))<-r.(t.(i)) +1) done;
+        for i=0 to (Array.length t -1) do (r.(t.(i))<-r.(t.(i)) +1) done;
         let tmp = ref true in
         let i = ref 0 in
-        while !tmp do 
+        while !tmp do (
                 if r.(!i) = 0 then tmp := false
-                else (i := !i+1 ;if !i>=n then tmp := false)
+                else (i := !i+1 ;if !i>n then tmp := false))
         done;
         !i));;
 assert((premierabsent [||]) = 0);;
 assert((premierabsent [|1|]) = 0);;
 assert((premierabsent [|0|]) = 1);;
 assert((premierabsent [|0;2;3|]) = 1);;
-assert((premierabsent [|0;1|]) = 2);;
+assert((premierabsent [|0;1;2|]) = 3);;
 

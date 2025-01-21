@@ -116,3 +116,24 @@ assert((premierabsent [|0|]) = 1);;
 assert((premierabsent [|0;2;3|]) = 1);;
 assert((premierabsent [|0;1;2|]) = 3);;
 
+let rpz str = 
+        let t = Array.make 5 0 in
+        for i=0 to ((String.length str )-1) do match str.[i] with
+                |'m'-> t.(0)<-t.(0) +1 
+                |'M'-> t.(0)<-t.(0) +1 
+                |'o'-> t.(1)<-t.(1) +1
+                |'O'-> t.(1)<-t.(1) +1
+                |'s'-> t.(2)<-t.(2) +1
+                |'S'-> t.(2)<-t.(2) +1
+                |'e'-> t.(3)<-t.(3) +1
+                |'E'-> t.(3)<-t.(3) +1
+                |'l'-> t.(4)<-t.(4) +1
+                |'L'-> t.(4)<-t.(4) +1
+        done;
+        t.(3)<-t.(3)/2; t.(4)<-t.(4)/2;
+        Array.fold_right min t (String.length str);;
+assert(rpz "Moselle" = 1);;
+assert(rpz "MosellemosELLE" = 2);;
+assert(rpz "Mosele" = 0);;
+
+

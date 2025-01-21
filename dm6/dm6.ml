@@ -54,7 +54,6 @@ let minecart t =
 
 
 let premiercommepremier t =
-  let let premiercommepremier t = 
   let taille = Array.length t in
   let indice = ref (-1) in 
   for i = 1 to (taille-1) do
@@ -83,21 +82,37 @@ premiercommeavant [|1; 5; 7; 9; 6 ;8; 43; 1; 6; 1|];;
 premiercommeavant [|1; 5; 7; 9; 6 ;8; 43; 11; 62|];; 
 
 
-let premierabsent t =
+let equilibre t =
 	let n = Array.length t in
-	let d = Hashtabl.create n in
+	let d = Hashtbl.create n in
 	for i = 0 to (n-1) do
-		if Hashtbl.mem d i then Hashtbl.replace d i ((Hashtbl.find d i)+1)
-		else Hashtbl.add d i 1
+		if Hashtbl.mem d t.(i) then Hashtbl.replace d i ((Hashtbl.find d t.(i))+1)
+		else Hashtbl.add d t.(i) 1
 	done ;
-	let t = Hashtbl.fin_all in 
-	let rec verif l = match l with
-	| [] -> true
-	| [a] -> true
-	| a::b::q -> (a=b)&& verif b::q 
-	in verif t 
-		
+    let a = ref 0 in
+    let verif k v b = if !a=0 then(a:=v ; true && b) else (if !a=v then true && b else false) 
+    in
+    Hashtbl.fold verif d true ;;
 
+assert(equilibre [|1;2;3;4|]);;
+assert(not (equilibre [|1;2;3;4;4|]));;
+            
+let premierabsent t =  
+        let taille = Array.length t in 
+        if taille = 0 then 0 else (if taille = 1 then (if t.(0) = 0 then 1 else 0) else(
+        let n = Array.fold_right max t 0 in
+        let r = Array.make (n+1) 0 in
+        for i=0 to (Array.length t -2) do (r.(t.(i))<-r.(t.(i)) +1) done;
+        let tmp = ref true in
+        let i = ref 0 in
+        while !tmp do 
+                if r.(!i) = 0 then tmp := false
+                else (i := !i+1 ;if !i>=n then tmp := false)
+        done;
+        !i));;
+assert((premierabsent [||]) = 0);;
+assert((premierabsent [|1|]) = 0);;
+assert((premierabsent [|0|]) = 1);;
+assert((premierabsent [|0;2;3|]) = 1);;
+assert((premierabsent [|0;1|]) = 2);;
 
-
- 

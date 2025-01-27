@@ -129,11 +129,42 @@ let rpz str =
                 |'E'-> t.(3)<-t.(3) +1
                 |'l'-> t.(4)<-t.(4) +1
                 |'L'-> t.(4)<-t.(4) +1
+                | _ -> t.(0)<-t.(0) 
         done;
         t.(3)<-t.(3)/2; t.(4)<-t.(4)/2;
         Array.fold_right min t (String.length str);;
 assert(rpz "Moselle" = 1);;
 assert(rpz "MosellemosELLE" = 2);;
 assert(rpz "Mosele" = 0);;
+
+let concate k v l =
+        (v,k)::l;;
+
+let decomp a = 
+        let d = Hashtbl.create a in
+        let x = ref a in
+        let i = ref 2 in
+        while !i <= !x do 
+                if (!x) mod !i = 0 then (if Hashtbl.mem d !i then Hashtbl.replace d !i ((Hashtbl.find d !i)+1)
+		        else Hashtbl.add d !i 1 ;
+                x := !x/(!i)
+        )else i := !i +1 
+        done;
+        Hashtbl.fold concate d [];;
+
+
+assert(decomp 2 = [(1,2)]);;
+(* fonction présente dans le but de voir dans quel ordre la décomposition ressort
+dans l'idéal on pourrait la trier mais c'est pas demandé elle est quan meme bien décomposé 
+
+let rec print l = match l with
+    |[] -> print_char('\n')
+    |(a,b)::q -> (print_int(a); print_int(b) ; print q;);;
+*)
+assert(decomp 12 = [(1,3);(2,2)]);;
+assert(decomp 42 = [(1,3);(1,7);(1,2)]);;
+
+
+
 
 

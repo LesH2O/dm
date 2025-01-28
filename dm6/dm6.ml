@@ -164,6 +164,44 @@ let rec print l = match l with
 assert(decomp 12 = [(1,3);(2,2)]);;
 assert(decomp 42 = [(1,3);(1,7);(1,2)]);;
 
+type couleur = Pique | Coeur | Carreau | Trefle
+type valeur = As | Roi | Dame | Valet | Val of int
+type carte = Coul of valeur * couleur 
+
+let ptcoul t n = if t > 4 then n+t-4 else n ;; 
+let evalutationHL main = 
+        let t = Array.make 4 0 in
+        let rec compte main= 
+        match main with
+        | [] -> 0
+        | Coul(Val a ,c)::q -> ((match c with
+            | Pique -> t.(0)<-t.(0)+1
+            | Coeur -> t.(1)<-t.(1)+1
+            | Carreau -> t.(2) <- t.(2) +1
+            | Trefle -> t.(3) <- t.(3) +1);
+            compte q)
+        | Coul(v,c)::q -> (
+          (match c with
+            | Pique -> t.(0)<-t.(0)+1
+            | Coeur -> t.(1)<-t.(1)+1
+            | Carreau -> t.(2) <- t.(2) +1
+            | Trefle -> t.(3) <- t.(3) +1);
+           match v with 
+            | As -> 4+(compte q)
+            | Roi -> 3+(compte q)
+            | Dame -> 2+(compte q)
+            | Valet -> 1+(compte q)
+            | _ -> compte q
+                            )
+        in (compte main) + (Array.fold_right ptcoul t 0);;
+
+
+
+
+
+
+
+
 
 
 

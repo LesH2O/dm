@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 
 int tables(int n){
 	if(n<6){exit(0);}
@@ -177,11 +178,38 @@ int main56(){
 
 
 
+int rpz(char s[]){
+	int taille = strlen(s);
+	int t[5] = {0, 0, 0, 0, 0};
+	for (int i = 0; i<taille; i+=1)
+	{
+		if (s[i]=='m') t[0]+=1.;
+		if (s[i]=='o') t[1]+=1;
+		if (s[i]=='s') t[2]+=1;
+		if (s[i]=='e') t[3]+=1;
+		if (s[i]=='l') t[4]+=1;
+	} 
+	float min = t[0];
+	for (int i = 0; i<3; i+=1)
+	{
+		if (t[i]<min) min=t[i];
+	}
+	for (int i = 3; i<5; i+=1)
+	{
+	    if (((int)(t[i]/2))<min) min=(int)(t[i]/2);
+	}
+	return min;
+}
 
+
+int main57(){
+	if (rpz("moselle")==1) {return 0;}
+	else {return 1;}
+}
 
 
 void main(){
-    int r = main56();
+    int r = main57();
 	exit(r);
 }
 

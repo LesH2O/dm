@@ -16,8 +16,8 @@ int tables(int n){
 
 int main50(){
 	int n = 7 ;
-	if(tables(n)==(1,1)){return 1;}
-	else{return 0;}
+	if(tables(n)==(1,1)){return 0;}
+	else{return 1;}
 }
 
 double q1 (double* tab, int taille){
@@ -149,12 +149,6 @@ int main55(){
 	else{return 1 ;}
 }
 
-void main(){
-	int r = main55() ;
-	exit(r) ;
-}
-
-
 
 
 
@@ -186,7 +180,7 @@ int main56(){
 
 
 void main(){
-    int r = main56();
+    int r = main50();
 	exit(r);
 }
 

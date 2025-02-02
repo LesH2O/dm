@@ -208,6 +208,88 @@ int main57(){
 }
 
 
+int* decomp(int x){
+   int p=2;
+   int* t = malloc((x/2)*sizeof(int));
+   int i =0;
+   while (x>=p){
+       if (x%p==0){
+           t[i]=p;
+           x=x/p;
+           i=i+1;}
+       else {p=p+1;}
+       
+   }
+   int* res= malloc((i)*sizeof(int));
+   for (int j=0; j<=i; j+=1){res[j]=t[j];}
+   free(t);
+   return res;
+}
+
+int main58(){
+	int t[]={2, 3, 7};
+	if((decomp(42)[0]==2)&&(decomp(42)[1]==3)&&(decomp(42)[2]==7)){return 1;}
+    else {return 1;}
+}
+
+
+
+struct Carte { char val[6]; char coul[8];};
+typedef struct Carte carte;
+
+int evaluationHL(carte* hand){
+	int points =0;
+	int* nb_coul = malloc(4*sizeof(int));
+	for (int i=0; i<4; i+=1)
+	{
+		nb_coul[i]=0;
+	}
+	for (int i=0; i<13; i+=1)
+	{
+		if (strcmp(hand[i].coul, "coeur")==0){nb_coul[0]+=1;}
+		if (strcmp(hand[i].coul, "carreau")==0){nb_coul[1]+=1;}
+		if (strcmp(hand[i].coul, "trefle")==0){nb_coul[2]+=1;}
+		if (strcmp(hand[i].coul, "pique")==0){nb_coul[3]+=1;}
+		if (strcmp(hand[i].val, "As")==0){points+=4;}
+		if (strcmp(hand[i].val, "Roi")==0){points+=3;}
+		if (strcmp(hand[i].val, "Reine")==0){points+=2;}
+		if (strcmp(hand[i].val, "Valet")==0){points+=1;}
+	}
+	for (int i=0; i<4; i+=1)
+	{
+		if (nb_coul[i]>4){points+=nb_coul[i]-4;}
+	}
+	free(nb_coul);
+	return points;
+}
+
+
+int main59()
+{
+    carte roi_pique = { .val = "Roi" , .coul = "pique" };
+    carte as_carreau = { .val = "As" , .coul = "carreau" };
+    carte huit_carreau = { .val = "huit" , .coul = "carreau" };
+    carte reine_coeur = { .val = "Reine" , .coul = "coeur" };
+    carte valet_trefle = { .val = "Valet" , .coul = "trefle" };
+    carte neuf_coeur = { .val = "neuf" , .coul = "coeur" };
+    carte deux_coeur = { .val = "deux" , .coul = "coeur" };
+    carte valet_coeur = { .val = "Valet" , .coul = "coeur" };
+    carte neuf_trefle = { .val = "neuf" , .coul = "trefle" };
+    carte deux_pique = { .val = "deux" , .coul = "pique" };
+    carte sept_coeur = { .val = "sept" , .coul = "coeur" };
+    carte six_coeur = { .val = "six" , .coul = "coeur" };
+    carte trois_pique = { .val = "trois" , .coul = "pique" };
+    
+    
+    carte hand[13]= { roi_pique , as_carreau , huit_carreau , reine_coeur , valet_trefle , neuf_coeur , deux_coeur , valet_coeur , neuf_trefle , deux_pique , sept_coeur , six_coeur , trois_pique };
+    if (evaluationHL(hand)==13){return 0;}
+	else { return 1;}
+}
+
+
+
+
+
 void main(){
     int r = main57();
 	exit(r);

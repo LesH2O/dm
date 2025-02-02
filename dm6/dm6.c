@@ -17,8 +17,8 @@ int tables(int n){
 
 int main50(){
 	int n = 7 ;
-	if(tables(n)==(1,1)){return 1;}
-	else{return 0;}
+	if(tables(n)==(1,1)){return 0;}
+	else{return 1;}
 }
 
 double q1 (double* tab, int taille){
@@ -122,8 +122,6 @@ int main54(){
 	printf("never gonna let you down \n");
 	return 1 ;
 }
-
-
 bool equilibre(int* t, int taille){
 	int max = t[0];
 	int min = t[0];
@@ -151,6 +149,7 @@ int main55(){
 	if(equilibre(tab,2)){ return 0 ;}
 	else{return 1 ;}
 }
+
 
 
 
@@ -291,7 +290,8 @@ int main59()
 
 
 void main(){
-    int r = main57();
+    int r = main50();
+
 	exit(r);
 }
 

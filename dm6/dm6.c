@@ -76,7 +76,7 @@ int main52(){
 	else{return 0 ;}
 }
 int premiercommepremier(int* tab, int taille){
-	if(taille < 1){exit(0);}
+	if(taille < 1){exit(1);}
 	int premier = tab[0] ;
 	for(int i= 1 ; i < taille ; i +=1){
 		if(tab[i] == premier && i+1<taille){return i+1 ;}
@@ -98,7 +98,7 @@ premiercommepremier(t4, 1)==-1){return 0 ;}
 }
 
 int* premiercommeavant(int* tab , int taille){
-	if(taille < 1){exit(0);}
+	if(taille < 1){exit(1);}
 	int* r = malloc(2*sizeof(int));
 	r[0] = -1 ;
 	r[1] = -1 ;

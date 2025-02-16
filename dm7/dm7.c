@@ -55,3 +55,50 @@ void main(){
 		exit(r);
 }
 	
+
+
+
+
+
+int niederschaffolshein(char s, int n){
+    int count=0;
+    int max = 0;
+    for (int i=0; i<n; i+=1){
+        if (s[i]==" "){if (count>max){max=count;}
+                       count=0;}
+        else{count+=1;}
+    }
+    return max;
+} 
+
+
+
+
+
+int knekes(char s, int n){
+    char* res=malloc(7*n*sizeof(char));
+    int point=0;
+    for (int i=0 ; i<n ; i+=1){
+        if (s[i]==" "){res[point]=" ";
+                       point+=1;
+                       res[point]="h";
+                       point+=1;
+                       res[point]="o";
+                       point+=1;
+                       res[point]="p";
+                       point+=1;
+                       res[point]="l";
+                       point+=1;
+                       res[point]="a";
+                       point+=1;}
+        else{res[point]=s[i];
+             point+=1;}
+    }
+    char* r=malloc(point*sizeof(char));
+    for (int i=0; i<point; i+=1){
+        r[i]=res[i];
+    }
+    free(res);
+    return r;
+    
+}
